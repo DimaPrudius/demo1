@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -21,10 +22,9 @@ public class User {
     @Column(name = "age")
     private int age;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "id")
-    private List<Article>articles = new ArrayList<>();
+   @OneToMany(mappedBy = "user",
+           cascade = CascadeType.ALL,
+           orphanRemoval = true)
+    private List<Article> articles = new ArrayList<>();
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "users")
-//    private List<Article>articles = new ArrayList<>();
 }
